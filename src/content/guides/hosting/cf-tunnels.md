@@ -1,14 +1,12 @@
 ---
-title: Cloudflare Tunnels
-description: Deploy your API, selfhosted, with  Cloudflare Tunnels.
+title: Cloudflare Tunnels (selfhosted)
+description: Connect your selfhosted API to the internet with Cloudflare Tunnels.
 order: 1
 ---
 
-TODO: add images
-
 Your API works! Fantastic. Now let's get it online so the world can access it.
 
-There are many ways to host your API, but one of the easiest and most secure ways is using **Cloudflare Tunnels**. This method allows you to expose your local server to the internet without opening any ports on your router.
+There are many ways to connect your API to the Internet, but one of the easiest and most secure ways is using **Cloudflare Tunnels**. This method allows you to expose your local server to the internet without opening any ports on your router. If you'd like to use a hosted method (that doesn't require you to run a server on your computer), check out TODO.
 
 > However, you will need your own **domain** managed by Cloudflare. Flavortown offers domain grants, so [check it out](https://flavortown.hackclub.com) if you need one!
 

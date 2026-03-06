@@ -67,4 +67,15 @@ Ctrl-click or open `http://localhost:8000/hello` in your browser, and you should
 
 Great! You've built your first API endpoint with FastAPI. Now, any Python code you write inside that function will run whenever someone accesses that endpoint.
 
-TODO: add more to guide
+Side note: CORS (Cross-Origin Resource Sharing) is a security feature in web browsers that blocks requests to your API from domains of your choice. If you want to allow requests from any domain on the browser, make sure to add the following code to your `main.py`:
+
+```python
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # customize this to only allow certain domains!
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+```
