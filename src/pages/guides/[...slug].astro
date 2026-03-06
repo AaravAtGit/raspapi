@@ -34,5 +34,12 @@ const { Content } = await render(guide);
       )
     }
     <Content />
+    {
+      guide.data.author && (
+        <p class="mt-8 pt-4 border-t border-gray-200 text-sm text-gray-500 italic">
+          This guide was written by {guide.data.author}.
+        </p>
+      )
+    }
   </div>
 </DocsLayout>

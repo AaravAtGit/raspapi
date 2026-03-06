@@ -1,46 +1,9 @@
-# Astro Starter Kit: Basics
+# RaspAPI
 
-```sh
-bun create astro@latest -- --template basics
-```
+RaspAPI is a YSWS where you ship your own API, and Hack Club ships you a Raspberry Pi to run it on.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+See the original [RaspAPI](https://raspapi.hackclub.com) and the current [demo site](https://raspapi.halceon.dev).
 
-## 🚀 Project Structure
+## Contributing
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+If you'd like to contribute a guide, PR it in to the `src/content/guides` directory as is appropriate. Please include `author: yourusername` so you can be credited for writing it.
