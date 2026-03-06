@@ -46,6 +46,6 @@ Run that command in your terminal.
 
 Now, whether you're using Docker or not, you should have Cloudflared running on your computer. Configure it from the UI as such:
 
-![image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e622da4df4849e23_image.png)
+![image](https://cdn.hackclub.com/019c2569-83c6-73a5-8e01-6b9b07abea60/image.png)
 
 Add your domain, pick a subdomain you like, and tada! Your API is now live on the internet. Give yourself a round of applause.
