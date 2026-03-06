@@ -3,27 +3,27 @@ import Layout from "../layouts/Layout.astro";
 
 // don't remove for now
 const pastProjects = [
-	{
-		name: "Cachet",
-		description:
-			"A *really fast* proxy to quickly grab Hack Club Slack profile pictures without Slack API hassle.",
-		link: "https://cachet.dunkirk.sh",
-	},
-	{
-		name: "Battleships API",
-		description: "Play an entire game of Battleships over an API.",
-		link: "https://github.com/pbhak/battleships-api",
-	},
-	{
-		name: "ytdlp Web API",
-		description: "Download Youtube videos with one call.",
-		link: "https://github.com/duykhanh09103/ytdlp-web-api",
-	},
+  {
+    name: "Cachet",
+    description:
+      "A *really fast* proxy to quickly grab Hack Club Slack profile pictures without Slack API hassle.",
+    link: "https://cachet.dunkirk.sh",
+  },
+  {
+    name: "Battleships API",
+    description: "Play an entire game of Battleships over an API.",
+    link: "https://github.com/pbhak/battleships-api",
+  },
+  {
+    name: "ytdlp Web API",
+    description: "Download Youtube videos with one call.",
+    link: "https://github.com/duykhanh09103/ytdlp-web-api",
+  },
 ];
 ---
 
 <Layout>
-  <main class="homepage min-h-screen w-full relative overflow-hidden">
+  <section class="hero min-h-screen w-full relative overflow-hidden">
     <h1 class="hero-title select-none">RASPAPI</h1>
 
     <img
@@ -44,174 +44,435 @@ const pastProjects = [
     <p class="tagline">
       BUILD AN API. GET A RASPBERRY PI ZERO 2W TO HOST IT ON.
     </p>
+
+    <div class="scroll-hint">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M7 13l5 5 5-5M7 7l5 5 5-5"></path>
+      </svg>
+    </div>
+  </section>
+
+  <main class="below-fold">
+    <section class="info-section">
+      <h2 class="section-heading">WHAT IS IT</h2>
+      <p class="section-body">
+        RaspAPI is a <a
+          href="https://hackclub.com"
+          target="_blank"
+          rel="noopener noreferrer">Hack Club</a
+        > YSWS where you build an API, log your hours with
+        <a
+          href="https://hackatime.hackclub.com"
+          target="_blank"
+          rel="noopener noreferrer">Hackatime</a
+        >, and get a <strong>Raspberry Pi Zero 2W</strong> to host it on.
+      </p>
+    </section>
+
+    <section class="info-section">
+      <h2 class="section-heading">REQUIREMENTS</h2>
+      <ul class="req-list">
+        <li>Publicly accessible API with a stable URL</li>
+        <li>
+          At least <strong>3 GET</strong> endpoints and <strong>1 POST</strong> endpoint
+        </li>
+        <li>
+          Docs at <code>/docs</code> or root (handwritten or auto-generated)
+        </li>
+        <li>
+          Usable by anyone. If auth is required, it must be free and easy for
+          anybody to obtain keys.
+          <li>Public git repo with a README</li>
+          <li><strong>7+ hours</strong> tracked on Hackatime</li>
+        </li>
+      </ul>
+
+      <section class="info-section">
+        <h2 class="section-heading">EXAMPLES</h2>
+        <div class="project-grid">
+          {
+            pastProjects.map((project) => (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-card"
+              >
+                <h3 class="project-name">{project.name}</h3>
+                <p class="project-desc">{project.description}</p>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="info-section cta-section">
+        <a href="/guides" class="cta-link">READ THE GUIDES &rarr;</a>
+      </section>
+    </section>
   </main>
-</Layout>
 
-<style>
-  .homepage {
-    background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
-    background-repeat: repeat;
-  }
-
-  .hero-title {
-    position: absolute;
-    top: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: "Syne", sans-serif;
-    font-weight: 800;
-    font-size: clamp(4.5rem, 10vw, 12rem);
-    letter-spacing: 0.18em;
-    color: #fff;
-    z-index: 1;
-    text-align: center;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  .tagline {
-    position: fixed;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 50;
-    margin: 0;
-    font-family: "Syne", sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.45em;
-    color: #a3a3a3;
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .pi-image {
-    position: absolute;
-    bottom: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: min(90vw, 950px);
-    height: auto;
-    filter: drop-shadow(0 12px 60px rgba(0, 0, 0, 0.6));
-  }
-
-  .side-btn {
-    position: fixed;
-    z-index: 40;
-    top: 50%;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-    font-family: "Syne", sans-serif;
-    font-weight: 800;
-    font-size: 0.875rem;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    padding: 1.5rem 0.75rem;
-    border: 2px solid #404040;
-    background: rgba(10, 10, 10, 0.9);
-    color: #e5e5e5;
-    text-decoration: none;
-    transition:
-      border-color 0.2s,
-      color 0.2s,
-      background 0.2s;
-    cursor: pointer;
-  }
-
-  .side-btn:hover {
-    border-color: #c41e3a;
-    color: #fff;
-    background: rgba(196, 30, 58, 0.1);
-  }
-
-  .side-btn--left {
-    left: 0;
-  }
-
-  .side-btn--right {
-    right: 0;
-    transform: none;
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  .side-btn--right:hover {
-    color: #e5e5e5;
-    border-color: #404040;
-    background: rgba(10, 10, 10, 0.9);
-  }
-
-  .mobile-btns {
-    display: contents;
-  }
-
-  /* mobile nonsense */
-  @media (max-width: 768px) {
-    .homepage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100dvh;
-      padding: 0 1rem 4rem;
+  <style>
+    .hero {
+      background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+      background-repeat: repeat;
     }
 
     .hero-title {
-      position: relative;
-      top: auto;
-      left: auto;
-      transform: none;
-      margin-top: 3rem;
-      font-size: clamp(3rem, 12vw, 5rem);
-    }
-
-    .pi-image {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      transform: none;
-      width: 90vw;
-      max-width: 500px;
-      margin-top: 1.5rem;
-    }
-
-    .mobile-btns {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      width: 100%;
-      max-width: 500px;
-      margin-top: 2rem;
-      z-index: 40;
-    }
-
-    .side-btn {
-      position: static;
-      writing-mode: horizontal-tb;
-      text-orientation: initial;
-      transform: none;
-      width: 100%;
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: clamp(4.5rem, 10vw, 12rem);
+      letter-spacing: 0.18em;
+      color: #fff;
+      z-index: 1;
       text-align: center;
-      padding: 1rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.4em;
-    }
-
-    .side-btn--right {
-      transform: none;
+      line-height: 1;
+      white-space: nowrap;
     }
 
     .tagline {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      transform: none;
-      margin-top: 2rem;
-      white-space: normal;
-      font-size: 0.55rem;
-      letter-spacing: 0.3em;
-      padding: 0 0.5rem;
+      position: absolute;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.45em;
+      color: #a3a3a3;
+      white-space: nowrap;
+      text-align: center;
     }
-  }
-</style>
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 3.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      color: #525252;
+      animation: bob 2s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(6px);
+      }
+    }
+
+    .pi-image {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: min(90vw, 950px);
+      height: auto;
+      filter: drop-shadow(0 12px 60px rgba(0, 0, 0, 0.6));
+    }
+
+    .side-btn {
+      position: fixed;
+      z-index: 40;
+      top: 50%;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 0.875rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      padding: 1.5rem 0.75rem;
+      border: 2px solid #404040;
+      background: rgba(10, 10, 10, 0.9);
+      color: #e5e5e5;
+      text-decoration: none;
+      transition:
+        border-color 0.2s,
+        color 0.2s,
+        background 0.2s;
+      cursor: pointer;
+    }
+
+    .side-btn:hover {
+      border-color: #c41e3a;
+      color: #fff;
+      background: rgba(196, 30, 58, 0.1);
+    }
+
+    .side-btn--left {
+      left: 0;
+    }
+
+    .side-btn--right {
+      right: 0;
+      transform: none;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .side-btn--right:hover {
+      color: #e5e5e5;
+      border-color: #404040;
+      background: rgba(10, 10, 10, 0.9);
+    }
+
+    .mobile-btns {
+      display: contents;
+    }
+
+    /* ---- below-fold sections ---- */
+
+    .below-fold {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid #262626;
+      background: #0a0a0a;
+    }
+
+    .info-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .info-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-heading {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.5em;
+      color: #c41e3a;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #d4d4d4;
+      margin: 0;
+    }
+
+    .section-body a {
+      color: #f5f5f5;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #525252;
+      transition: text-decoration-color 0.2s;
+    }
+
+    .section-body a:hover {
+      text-decoration-color: #c41e3a;
+    }
+
+    .req-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .req-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #d4d4d4;
+    }
+
+    .req-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      background: #c41e3a;
+    }
+
+    .req-list code {
+      font-family: monospace;
+      font-size: 0.85em;
+      background: #1a1a1a;
+      padding: 0.15em 0.4em;
+      color: #e5e5e5;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .project-card {
+      display: block;
+      border: 1px solid #262626;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition:
+        border-color 0.2s,
+        background 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: #c41e3a;
+      background: rgba(196, 30, 58, 0.04);
+    }
+
+    .project-name {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 0 0 0.35rem 0;
+      color: #f5f5f5;
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #a3a3a3;
+      margin: 0;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .cta-link {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: #e5e5e5;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border: 2px solid #404040;
+      transition:
+        border-color 0.2s,
+        color 0.2s,
+        background 0.2s;
+    }
+
+    .cta-link:hover {
+      border-color: #c41e3a;
+      color: #fff;
+      background: rgba(196, 30, 58, 0.1);
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100dvh;
+        padding: 0 1rem 4rem;
+      }
+
+      .hero-title {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-top: 3rem;
+        font-size: clamp(3rem, 12vw, 5rem);
+      }
+
+      .pi-image {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 90vw;
+        max-width: 500px;
+        margin-top: 1.5rem;
+      }
+
+      .mobile-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 500px;
+        margin-top: 2rem;
+        z-index: 40;
+      }
+
+      .side-btn {
+        position: static;
+        writing-mode: horizontal-tb;
+        text-orientation: initial;
+        transform: none;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.4em;
+      }
+
+      .side-btn--right {
+        transform: none;
+      }
+
+      .tagline {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: 2rem;
+        white-space: normal;
+        font-size: 0.55rem;
+        letter-spacing: 0.3em;
+        padding: 0 0.5rem;
+      }
+
+      .scroll-hint {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: 1.5rem;
+      }
+
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      .info-section {
+        padding: 3rem 1.25rem;
+      }
+    }
+  </style>
+</Layout>
