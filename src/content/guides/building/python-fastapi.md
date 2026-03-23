@@ -146,3 +146,12 @@ def eat_jellybeans(jellybeans: JellyBeans):
 ```
 
 These requests cannot be made easily through the browser, so I would suggest using a tool like Postman/Insomnia/etc. to test them out. My tool of choice is called Yaak, and I've heard good things about Hoppscotch (in-browser) as well.
+
+Lastly, a few notes on documentation - it'll automatically generate docs at `/docs` and `/redoc`. You can add a docstring for each endpoint, and it'll show up in the docs!
+
+```python
+@app.post("/eatbeans")
+def eat_jellybeans(jellybeans: JellyBeans):
+    """Endpoint to eat jellybeans. Expects a JSON body with flavor, color, and quantity.""" # this is a docstring
+    return {"message": f"You ate {jellybeans.quantity} {jellybeans.color} {jellybeans.flavor} jellybeans!"}
+```
