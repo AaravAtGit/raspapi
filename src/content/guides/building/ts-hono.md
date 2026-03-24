@@ -110,6 +110,8 @@ describe("GET /", () => {
 });
 ```
 
+Now, just run `bun test` to see how they do!
+
 ## Deploying
 
 Cool. Let's get our API out there now!
