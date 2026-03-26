@@ -1,7 +1,7 @@
 ---
 title: Go (standard library)
 description: Build an API with no dependencies or frameworks in Go!
-order:4
+order: 4
 ---
 
 Alright, let's build an API with Go with just the standard library! To start, go install `go` from [the site](https://go.dev/dl/) and check that it's working with `go version`. You should see something like the following:
