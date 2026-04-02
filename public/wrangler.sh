@@ -26,7 +26,7 @@ AUTH_URL=$(grep -o 'https://dash.cloudflare.com[^ ]*' "$TMPFILE")
 echo -e "${BOLD}Open (ctrl-click) this URL & log in:${RESET}"
 echo -e "${CYAN}${AUTH_URL}${RESET}\n"
 echo -e "After logging in, copy & paste the URL (localhost:8976) from your address bar here: \c"
-read -r CALLBACK_URL
+read -r CALLBACK_URL < /dev/tty
 
 curl -s --max-time 5 "$CALLBACK_URL" > /dev/null
 sleep 2
