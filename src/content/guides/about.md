@@ -16,11 +16,9 @@ Missing any guides? Feel free to contribute to the repo or open an issue with th
 Before submitting your project, make sure you meet the following requirements:
 
 - Your API should be publicly accessible on the internet with a URL (no ephemeral links, please!)
-- Your API should have at least 5 GET endpoints and 2 POST endpoints (or something of similar complexity).
-- Your API should have some form of data persistence, including, for example, stats of some sort.
+- Your API should have at least 3 GET endpoints and 1 POST endpoint (or something of similar complexity).
 - Your API should include docs at `/docs`. These can be handwritten or auto-generated (Swagger, Redoc, Scalar, etc.), but should clearly explain your endpoints and give an example of a valid request for each.
-- At least one endpoint should support query parameters or filtering of some sort.
 - Your API should be usable by anyone. If it requires auth or API keys, make sure there's a way for people to easily get access, such as with a demo key on your docs.
 - Your code should be in a public git repo with a (hand-written, please) README explaining what it is.
-- You must have tracked 7 or more hours on Hackatime.
+- You should have around 5–7 hours tracked on Hackatime.
 - Make something cool and have fun!

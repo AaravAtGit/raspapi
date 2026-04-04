@@ -11,6 +11,7 @@ export interface UserRecord {
 	id: string;
 	slack_id: string;
 	hackatime_token?: string;
+	balance: number;
 }
 
 export interface ProjectRecord {
@@ -53,6 +54,7 @@ export async function upsertUser(slack_id: string): Promise<UserRecord | null> {
 				id: r.id,
 				slack_id: r.fields.slack_id,
 				hackatime_token: r.fields.hackatime_token ?? undefined,
+				balance: r.fields.balance ?? 0,
 			};
 		}
 	}
@@ -66,7 +68,7 @@ export async function upsertUser(slack_id: string): Promise<UserRecord | null> {
 	const created = await createRes.json();
 	const r = created.records?.[0];
 	if (!r) return null;
-	return { id: r.id, slack_id: r.fields.slack_id };
+	return { id: r.id, slack_id: r.fields.slack_id, balance: 0 };
 }
 
 export async function getUserBySlackId(
@@ -85,6 +87,7 @@ export async function getUserBySlackId(
 		id: r.id,
 		slack_id: r.fields.slack_id,
 		hackatime_token: r.fields.hackatime_token ?? undefined,
+		balance: r.fields.balance ?? 0,
 	};
 }
 
@@ -113,7 +116,7 @@ export async function getAllUsers(): Promise<UserRecord[]> {
 		if (!res.ok) break;
 		const data = await res.json();
 		for (const r of data.records ?? []) {
-			records.push({ id: r.id, slack_id: r.fields.slack_id });
+			records.push({ id: r.id, slack_id: r.fields.slack_id, balance: r.fields.balance ?? 0 });
 		}
 		offset = data.offset;
 	} while (offset);
@@ -277,6 +280,7 @@ export async function updateProjectImage(id: string, image: Blob) {
 	});
 	return res.ok;
 }
+
 
 export async function createSubmission(
 	projectId: string,

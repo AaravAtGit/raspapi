@@ -9,6 +9,10 @@ if (!session) return Astro.redirect("/auth/login");
 const userRecord = await getUserBySlackId(session.slack_id);
 const hackatimeConnected = !!userRecord?.hackatime_token;
 
+const SHOP_THRESHOLD = 50;
+const raspberryBalance = userRecord?.balance ?? 0;
+const shopUnlocked = raspberryBalance >= SHOP_THRESHOLD;
+
 const adminIds = (import.meta.env.ADMIN_IDS ?? "")
 	.split(",")
 	.map((s: string) => s.trim())
@@ -84,6 +88,23 @@ try {
 
     <section class="shop">
       <span class="shop-label">SHOP</span>
+
+      <div class="pi-reward">
+        <div class="pi-reward-info">
+          <p class="pi-reward-name">Raspberry Pi Zero 2W</p>
+          <p class="pi-reward-desc">
+            {shopUnlocked ? "unlocked" : `earn ${SHOP_THRESHOLD} raspberries to unlock`}
+          </p>
+        </div>
+        <div class="progress-track">
+          <div
+            class={`progress-fill${shopUnlocked ? " progress-fill--done" : ""}`}
+            style={`width:${Math.min((raspberryBalance / SHOP_THRESHOLD) * 100, 100)}%`}
+          />
+        </div>
+        <p class="progress-count">{raspberryBalance} / {SHOP_THRESHOLD}</p>
+      </div>
+
       {
         shopItems.length === 0 ? (
           <p class="empty">no items available</p>
@@ -188,6 +209,61 @@ try {
     .empty {
       font-size: 0.875rem;
       color: #525252;
+      margin: 0;
+    }
+
+    .pi-reward {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-width: 320px;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .pi-reward-info {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .pi-reward-name {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #f5f5f5;
+      margin: 0;
+    }
+
+    .pi-reward-desc {
+      font-size: 0.75rem;
+      color: #525252;
+      margin: 0;
+    }
+
+    .progress-track {
+      height: 3px;
+      background: #1a1a1a;
+      border: 1px solid #262626;
+      width: 100%;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #c41e3a;
+      transition: width 0.3s ease;
+    }
+
+    .progress-fill--done {
+      background: #22c55e;
+    }
+
+    .progress-count {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      color: #404040;
       margin: 0;
     }
 
