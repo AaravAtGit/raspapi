@@ -1,6 +1,11 @@
 import type { APIRoute } from "astro";
-import { updateProjectHoursCache } from "../../../lib/airtable";
+import { z } from "astro/zod";
+import { getProjectById, updateProjectHoursCache } from "../../../lib/airtable";
 import { getSession } from "../../../lib/session";
+
+const QuerySchema = z.object({
+	id: z.string().min(1),
+});
 
 export const GET: APIRoute = async ({ cookies, url }) => {
 	const session = await getSession(cookies, import.meta.env.SESSION_SECRET);
@@ -8,12 +13,27 @@ export const GET: APIRoute = async ({ cookies, url }) => {
 		return Response.json({ error: "Not logged in" }, { status: 401 });
 	}
 
-	const project = url.searchParams.get("project");
-	const recordId = url.searchParams.get("id");
-	if (!project) {
-		return Response.json({ error: "Missing project" }, { status: 400 });
+	const parsed = QuerySchema.safeParse(Object.fromEntries(url.searchParams));
+	if (!parsed.success) {
+		return Response.json({ error: "Missing id" }, { status: 400 });
+	}
+	const { id: recordId } = parsed.data;
+
+	const record = await getProjectById(recordId);
+	if (!record) {
+		return Response.json({ error: "Record not found" }, { status: 404 });
+	}
+	if (record.user_slack_id !== session.slack_id) {
+		return Response.json({ error: "Forbidden" }, { status: 403 });
+	}
+	if (!record.hackatime_project) {
+		return Response.json(
+			{ error: "No hackatime project set" },
+			{ status: 400 },
+		);
 	}
 
+	const project = record.hackatime_project;
 	const start = "2026-03-30T00:00:00Z";
 	const apiUrl = `https://hackatime.hackclub.com/api/v1/users/${encodeURIComponent(session.slack_id)}/project/${encodeURIComponent(project)}?start=${start}`;
 	console.log("[project-time] fetching", apiUrl);
@@ -46,9 +66,7 @@ export const GET: APIRoute = async ({ cookies, url }) => {
 	const hours = totalSeconds / 3600;
 	const updatedAt = Date.now();
 
-	if (recordId) {
-		updateProjectHoursCache(recordId, hours, updatedAt).catch(() => {});
-	}
+	updateProjectHoursCache(recordId, hours, updatedAt).catch(() => {});
 
 	return Response.json({ total_seconds: totalSeconds });
 };
